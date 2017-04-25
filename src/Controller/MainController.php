@@ -12,6 +12,7 @@
     use App\Service\OrderMailer;
     use Psr\Container\ContainerInterface;
     use Slim\Http\Response;
+    use Slim\Views\PhpRenderer;
 
     /**
      * Class MainController
@@ -27,16 +28,23 @@
          * @var OrderMailer
          */
         protected $mailer;
+        /**
+         * @var PhpRenderer
+         */
+        protected $renderer;
 
         /**
          * AuthMiddleware constructor.
          *
          * @param ContainerInterface $container
+         * @param PhpRenderer        $renderer
          */
-        public function __construct(ContainerInterface $container)
+        public function __construct(ContainerInterface $container, PhpRenderer $renderer)
         {
             $this->container = $container;
             $this->mailer = $container->get('mailer');
+
+            $this->renderer = $renderer;
         }
 
         /**
@@ -101,5 +109,16 @@
 
             return $response->withStatus($code)->withHeader('Content-Type',
                 'application/json; charset=utf-8')->withHeader('Access-Control-Allow-Origin', '*')->withBody($body);
+        }
+
+        /**
+         * @param $request
+         * @param $response
+         *
+         * @return \Psr\Http\Message\ResponseInterface
+         */
+        public function docs($request, $response)
+        {
+            return $this->renderer->render($response, 'api-doc.phtml');
         }
     }

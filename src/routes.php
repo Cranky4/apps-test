@@ -13,6 +13,9 @@
 
     })->add(CorsMiddleware::class)->add(AuthMiddleware::class);
 
+    /** @var Slim\App $this */
+    $app->get('/api/docs', 'MainController:docs');
+
     $app->get('/[{name}]', function ($request, $response, $args) {
         // Sample log message
         $this->logger->info("Slim-Skeleton '/' route");

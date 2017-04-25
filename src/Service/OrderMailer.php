@@ -42,8 +42,7 @@
          */
         public static function composeOrderMessage($requestParams)
         {
-            $message = '';
-
+            $message = self::composeUserInfo($requestParams);
             // Version <= 1.1
             if (!empty($requestParams['water'])) {
                 $message .= "Вода: <b> " . $requestParams['water'] . "</b>\r\n<br>";
@@ -82,6 +81,19 @@
         }
 
         /**
+         * @param $requestParams
+         *
+         * @return string
+         */
+        private static function composeUserInfo($requestParams)
+        {
+            $message = "Имя: <b> " . $requestParams['name'] . "</b>\r\n<br>";
+            $message .= "Телефон: <b> " . $requestParams['phone'] . "</b>\r\n<br>";
+
+            return $message;
+        }
+
+        /**
          * @return string
          */
         private static function composeIpInfo()
@@ -96,12 +108,21 @@
          *
          * @return string
          */
-        private static function composeDeviceInfo(array $device)
+        private static function composeDeviceInfo($device)
         {
-            $message = "Модель: <b> " . $device['deviceModel'] . "</b>\r\n<br>";
-            $message .= "Платформа: <b> " . $device['devicePlatform'] . "</b>\r\n<br>";
-            $message .= "Версия: <b> " . $device['deviceVersion'] . "</b>\r\n<br>";
-            $message .= "UUID: <b> " . $device['deviceUuid'] . "</b>\r\n<br>";
+            $message = '';
+            if (!empty($device['deviceModel'])) {
+                $message .= "Модель: <b> " . $device['deviceModel'] . "</b>\r\n<br>";
+            }
+            if (!empty($device['devicePlatform'])) {
+                $message .= "Платформа: <b> " . $device['devicePlatform'] . "</b>\r\n<br>";
+            }
+            if (!empty($device['deviceVersion'])) {
+                $message .= "Версия: <b> " . $device['deviceVersion'] . "</b>\r\n<br>";
+            }
+            if (!empty($device['deviceUuid'])) {
+                $message .= "UUID: <b> " . $device['deviceUuid'] . "</b>\r\n<br>";
+            }
 
             return $message;
         }
@@ -113,10 +134,12 @@
          */
         public static function composeCallbackMessage($requestParams)
         {
-            $message = "Время звонка: <b> " . $requestParams['time'] . "</b>\r\n<br>";
-
+            $message = self::composeUserInfo($requestParams);
+            if (!empty($requestParams['time'])) {
+                $message .= "Время звонка: <b> " . $requestParams['time'] . "</b>\r\n<br>";
+            }
             $message .= self::composeIpInfo();
-            $message .= self::composeDeviceInfo($requestParams['device']);
+            $message .= self::composeDeviceInfo($requestParams);
 
             return $message;
         }

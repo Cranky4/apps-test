@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Api docs</title>
+    <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+    <style>
+        body {
+            margin: 50px 0 0 0;
+            padding: 0;
+            width: 100%;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #565656;
+            font-size: 18px;
+        }
+
+        h1 {
+            color: #719e40;
+            letter-spacing: -3px;
+            font-family: 'Lato', sans-serif;
+            font-size: 100px;
+            font-weight: 200;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        table.api-doc {
+            width: 980px;
+            margin: 0 auto;
+        }
+
+        table.api-doc td, table.api-doc th {
+            border-bottom: 1px solid #eee;
+        }
+
+        pre {
+            background-color: #efefef;
+        }
+    </style>
+</head>
+<body>
+<h1>Api doc</h1>
+
+<table class="api-doc">
+    <thead>
+    <tr>
+        <th colspan="4">
+            Order
+            <br>
+            POST /api?act=order
+        </th>
+    </tr>
+    <tr>
+        <th>Param</th>
+        <th>Required</th>
+        <th>Example</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>name</td>
+        <td>+</td>
+        <td>Иванов Иван Иванович</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>phone</td>
+        <td>+</td>
+        <td>+799912312345</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>water</td>
+        <td> Version <= 1.1</td>
+        <td>Йодис, 1л</td>
+        <td>Наименование товара</td>
+    </tr>
+    <tr>
+        <td>n</td>
+        <td> Version <= 1.1</td>
+        <td>2</td>
+        <td>Количество</td>
+    </tr>
+    <tr>
+        <td> product[]</td>
+        <td> Version >= 1.2</td>
+        <td> Йодис, 1л</td>
+        <td> Наименование товара</td>
+    </tr>
+    <tr>
+        <td> amount[]</td>
+        <td> Version >= 1.2</td>
+        <td> 2</td>
+        <td> кол-во товара</td>
+    </tr>
+    <tr>
+        <td> address</td>
+        <td> Version >= 2.0</td>
+        <td> ул. Боровая 53, корпус 3, лит А</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td> region</td>
+        <td> Version >= 2.0</td>
+        <td> Адмиралтейский район</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td> delivery</td>
+        <td> Version >= 2.0</td>
+        <td> Декабрь 30, 17:30</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td> comment</td>
+        <td> Version >= 2.0</td>
+        <td> Позвонить перед доставкой</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td> deviceModel</td>
+        <td></td>
+        <td> model</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td> devicePlatform</td>
+        <td></td>
+        <td> platform</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td> deviceVersion</td>
+        <td></td>
+        <td> platform</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td> deviceUuid</td>
+        <td></td>
+        <td> uuid</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            json request
+            <pre>
+            {
+                "name": "Иванов Иван Иванович",
+                "phone": "+799912312345",
+                "water": "Йодис. 1л",
+                "n": "3",
+                "address": "ул. Боровая 53, корпус 3, лит А",
+                "region": "Адмиралтейский район",
+                "delivery": "Декабрь 30, 17:30",
+                "comment": "Позвонить перед доставкой",
+
+                //device info
+                "deviceModel": "model",
+                "devicePlatform": "platform",
+                "deviceVersion": "version",
+                "deviceUuid": "uuid"
+            }
+                or
+            {
+                "name": "Иванов Иван Иванович",
+                "phone": "+799912312345",
+                "product": [
+                    "water1",
+                    "water2",
+                    "water3"
+                ],
+                "amount": [
+                    "2",
+                    "4",
+                    "3"
+                ],
+                "address": "ул. Боровая 53, корпус 3, лит А",
+                "region": "Адмиралтейский район",
+                "delivery": "Декабрь 30, 17:30",
+                "comment": "Позвонить перед доставкой",
+
+                //device info
+                "deviceModel": "model",
+                "devicePlatform": "platform",
+                "deviceVersion": "version",
+                "deviceUuid": "uuid"
+            }
+            </pre>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<table class="api-doc">
+    <thead>
+    <tr>
+        <th colspan="4">
+            Callback
+            <br>
+            POST /api?act=callback
+        </th>
+    </tr>
+    <tr>
+        <th>Param</th>
+        <th>Required</th>
+        <th>Example</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>name</td>
+        <td>+</td>
+        <td>Иванов Иван Иванович</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>phone</td>
+        <td>+</td>
+        <td>+799912312345</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>time</td>
+        <td></td>
+        <td>17:30</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td> deviceModel</td>
+        <td></td>
+        <td> model</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td> devicePlatform</td>
+        <td></td>
+        <td> platform</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td> deviceVersion</td>
+        <td></td>
+        <td> platform</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td> deviceUuid</td>
+        <td></td>
+        <td> uuid</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            json request
+            <pre>
+            {
+                "name": "Иванов Иван Иванович",
+                "phone": "+799912312345",
+                "time": "17:30",
+
+                //device info
+                "deviceModel": "model",
+                "devicePlatform": "platform",
+                "deviceVersion": "version",
+                "deviceUuid": "uuid"
+            }
+            </pre>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
+
