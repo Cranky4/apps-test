@@ -104,24 +104,24 @@
         }
 
         /**
-         * @param array $device
+         * @param array $requestParams
          *
          * @return string
          */
-        private static function composeDeviceInfo($device)
+        private static function composeDeviceInfo($requestParams)
         {
             $message = '';
-            if (!empty($device['deviceModel'])) {
-                $message .= "Модель: <b> " . $device['deviceModel'] . "</b>\r\n<br>";
+            if (!empty($requestParams['deviceModel'])) {
+                $message .= "Модель: <b> " . $requestParams['deviceModel'] . "</b>\r\n<br>";
             }
-            if (!empty($device['devicePlatform'])) {
-                $message .= "Платформа: <b> " . $device['devicePlatform'] . "</b>\r\n<br>";
+            if (!empty($requestParams['devicePlatform'])) {
+                $message .= "Платформа: <b> " . $requestParams['devicePlatform'] . "</b>\r\n<br>";
             }
-            if (!empty($device['deviceVersion'])) {
-                $message .= "Версия: <b> " . $device['deviceVersion'] . "</b>\r\n<br>";
+            if (!empty($requestParams['deviceVersion'])) {
+                $message .= "Версия: <b> " . $requestParams['deviceVersion'] . "</b>\r\n<br>";
             }
-            if (!empty($device['deviceUuid'])) {
-                $message .= "UUID: <b> " . $device['deviceUuid'] . "</b>\r\n<br>";
+            if (!empty($requestParams['deviceUuid'])) {
+                $message .= "UUID: <b> " . $requestParams['deviceUuid'] . "</b>\r\n<br>";
             }
 
             return $message;
