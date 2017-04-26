@@ -19,6 +19,6 @@ return [
         //app token
         'authToken' => 'secret',
         //mailer settings
-        'mailTo' => 'cranky4.89@gmail.com',
+        'mailTo' => 'borshchov@appsstudio.ru',
     ],
 ];
